@@ -1,22 +1,23 @@
 {
-	"127.0.0.1" : {
-		"/{x}?/{y}":{
-			"host":"127.0.0.1",
-	        "port":3200,
-	        "url":"/test.json",
-	        "type":"bananas",
+	"global" : {
+		"*":{
+			"host": null,
+	        "port": 80,
+	        "type":"drop some",
 			"method":"GET",
-	        "latency":3330
-		}
+	        "latency":2500
+		},
+		"addresses" : ["127.0.0.1", "0.0.0.0"]
 	},
 	
-	"*" : {
+	"Sales" : {
 		"/{x}?/{y}":{
 			"host":"127.0.0.1",
 	        "port":3200,
 	        "url":"/test.json",
 	        "type":"bananas",
 			"method":"GET"
-		}
+		},
+		"addresses" : ["5.5.5.5.5"]
 	}
 }

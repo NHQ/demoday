@@ -4,8 +4,6 @@ var Connect = require('connect')
 ;
 
 var connect = Connect()
-  .use(Connect.logger('dev'))
-  .use(Connect.static('public'))
   .use(function(req, res){
 	var obj = {};
 	obj.EMPLOYEE = fake.Name.findName();

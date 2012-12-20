@@ -1,7 +1,46 @@
 var httpProxy = require('http-proxy')
   ,  urlUtil = require('url');
 
-exports['apples'] = function (req, res) {
+exports['internet'] = function(req, res){
+	var config = req.serConfig;
+	var proxy = req.proxy;
+    proxy.proxyRequest(req, res, {
+        host: req.headers.host,
+		port: req.headers.host.split(':')[1] || 80
+    });
+}
+
+exports['slow internet'] = function(req, res){
+	var config = req.serConfig;
+	var proxy = req.proxy;
+    var buffer = httpProxy.buffer(req);
+    setTimeout(function () {
+        proxy.proxyRequest(req, res, {
+            host:req.headers.host,
+            port:80,
+            buffer:buffer
+        });
+    }, config.latency || 1000);
+};
+
+exports["drop some"] = function(req, res){
+    var config = req.serConfig;
+	var proxy = req.proxy;
+	
+	if (Math.random() > .25){
+		var config = req.serConfig;
+		var proxy = req.proxy;
+	    proxy.proxyRequest(req, res, {
+	        host: req.headers.host,
+			port: req.headers.host.split(':')[1] || 80
+	    });
+	}
+
+	else res.end();
+
+}
+
+exports['fake data'] = function (req, res) {
     var config = req.serConfig;
 	var proxy = req.proxy;
     var buffer = httpProxy.buffer(req);
@@ -15,7 +54,7 @@ exports['apples'] = function (req, res) {
     }, config.latency || 1000);
 };
 
-exports['bananas'] = function(req, res){
+exports['meta data'] = function(req, res){
 	var config = req.serConfig;
     var ip = req.connection.remoteAddress;
 	res.writeHead(200);

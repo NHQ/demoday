@@ -1,10 +1,8 @@
 var http = require('http');
 
 var host = 'localhost'
-// var host = '' REPLICA NETMORPHIC APP RUNNING ON CYLUS'S LAPTOP
 
 var headers = {
-	host: 'localhost',
 	host: host,
 	port: 3201,
 	path: '/get/json',
@@ -13,7 +11,7 @@ var headers = {
 
 setInterval(request, 300)
 
-setInterval(setConfigType, 5000)
+//setInterval(setConfigType, 2000)
 
 function request(){
 
@@ -40,17 +38,17 @@ var typeswitch = false;
 
 function setConfigType(){
 	
-	var c = "/{x}?/{y}"
+	var c = "*"
 	
 	typeswitch = !typeswitch
 	
-	var type = typeswitch ? 'apples' : 'bananas'
-	
+	var type = typeswitch ? 'fake date' : 'meta data'
+	console.log('type = ' + type)
 	var headers = {
 		host: 'localhost',
 		host: host,
 		port: 3201,
-		path: '/setConfig?srcUrl=' + c + '&type=' + type,
+		path: '/setconfig?tenant=global&srcUrl=' + c + '&type=' + type,
 		method: 'get'
 	};
 	

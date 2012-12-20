@@ -1,5 +1,5 @@
-var proxy = require('../netmorphic').http
-  , monitor = require('../netmorphic').monitor
+var proxy = require('../netmorphic-1').http
+  , monitor = require('../netmorphic-1').monitor
   , config = require('./config.json')
   , sample_handlers = require('./sample.handlers.js')
   , Cluster = require('cluster2')
@@ -9,11 +9,13 @@ var proxy = require('../netmorphic').http
 var clustered = true;
 
 var handlers = {
-	apples: sample_handlers.apples,
-	bananas: sample_handlers.bananas
+	'fake data': sample_handlers['fake data'],
+	'meta data': sample_handlers['meta data'],
+	'internet': sample_handlers.internet,
+	'slow internet': sample_handlers['slow internet']
 }
 
-var proxy = proxy(config, handlers, clustered);  
+var proxy = proxy(config, sample_handlers, clustered);  
 
 if(clustered){
 	var cluster = new Cluster({
