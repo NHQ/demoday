@@ -38,7 +38,7 @@ exports["drop some"] = function(req, res){
 
 	else res.end();
 
-}
+};
 
 exports['fake data'] = function (req, res) {
     var config = req.serConfig;

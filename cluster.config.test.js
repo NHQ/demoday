@@ -10,7 +10,7 @@ module.exports['test set config on cluster'] = function(test){
 		http.get('http://localhost:3201/setConfig?tenant=global&srcUrl=' + config + '&type=apples&latency=' + (x+=10)).on('response', function(res){
 			test.equal(res.statusCode, 200);
 		});	
-	}, 10);
+	}, 30);
 
 	setInterval(function(){
 		
@@ -23,5 +23,5 @@ module.exports['test set config on cluster'] = function(test){
 	//		test.equal(res.statusCode, 404);
 	//		test.done();
 		});	
-	}, 10)	
+	}, 30)	
 };
